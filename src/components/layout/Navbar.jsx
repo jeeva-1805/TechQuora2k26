@@ -11,7 +11,7 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050816]/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
-        <NavLink
+        <Navlink
           to="/"
           className="text-xl font-bold sm:text-2xl"
           onClick={() => setIsOpen(false)}
@@ -20,11 +20,11 @@ function Navbar() {
           <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
             2k26
           </span>
-        </NavLink>
+        </Navlink>
 
         <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
-            <NavLink
+            <Navlink
               key={link.id}
               to={link.path}
               className={({ isActive }) =>
@@ -36,7 +36,7 @@ function Navbar() {
               }
             >
               {link.name}
-            </NavLink>
+            </Navlink>
           ))}
         </nav>
 
@@ -59,7 +59,7 @@ function Navbar() {
         <div className="border-t border-white/10 bg-[#050816] px-4 py-5 lg:hidden">
           <nav className="flex flex-col gap-2">
             {navLinks.map((link) => (
-              <NavLink
+              <Navlink
                 key={link.id}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
@@ -72,7 +72,7 @@ function Navbar() {
                 }
               >
                 {link.name}
-              </NavLink>
+              </Navlink>
             ))}
 
             <Button
