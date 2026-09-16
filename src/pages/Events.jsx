@@ -68,7 +68,7 @@ function Events() {
                     Event Day
                   </p>
                   <p className="text-[10px] font-semibold sm:text-xs">
-                    1 october
+                    Sep 30, 2026
                   </p>
                 </div>
               </div>

@@ -9,7 +9,7 @@ function AboutHero() {
     {
       icon: CalendarDays,
       title: "Event Day",
-      value: "Oct 1, 2026",
+      value: "Sep 30, 2026",
     },
     {
       icon: MapPin,

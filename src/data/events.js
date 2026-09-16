@@ -65,7 +65,7 @@ export const technicalEvents = [
   {
     id: "T-04",
     slug: "Output to Code",
-    title: "LOGICDECODE",
+    title: "BYTEBATTLE",
     description: "Code. Compete. Conquer.",
     tags: ["Develop", "Think", "Win"],
     image: "/images/events/codex.png",
@@ -87,8 +87,8 @@ export const technicalEvents = [
 export const nonTechnicalEvents = [
   {
     id: "N-01",
-    slug: "quiz",
-    title: "Mind Arena",
+    slug: "Pixel-Hunt",
+    title: "SnapShot",
     description: "Think fast. Answer faster.",
     tags: ["Knowledge", "Speed", "Fun"],
     image: "/images/events/quiz.png",

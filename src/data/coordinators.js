@@ -1,32 +1,39 @@
 export const staffCoordinators = [
   {
     id: 1,
-    name: "Staff Coordinator 1",
-    role: "Faculty Coordinator",
-    department: "Department of CSE(AI-ML)",
-    image: "",
-  },
-  {
-    id: 2,
-    name: "Staff Coordinator 2",
-    role: "Faculty Coordinator",
-    department: "Department of CSE(AI-ML)",
-    image: "",
-  },
-  {
-    id: 3,
-    name: "staff Coordinator",
-    role: "staff Coordinator",
-    department: "Department of CSE(AI-ML)",
+    name: "Mr.H.PACKIARAJ",
+    role: "CONVENOR",
+    department: "HEAD OF THE DEPARTMENT(AIML)",
     image:"/images/coordinators/staff/hod.jpeg",
   },
   {
-    id: 4,
-    name: "staff Coordinator ",
-    role: "staff Coordinator",
-    department: "Department of CSE(AI-ML)",
-    image:"/images/coordinators/staff/.monijpeg",
+    id: 2,
+    name: "M.ANTRO MONICA SANJAS",
+    role: "Faculty Coordinator",
+    department: "ASSISTANT PROFESSOR(AIML)",
+    image:"/images/coordinators/staff/monica.jpeg",
   },
+  {
+    id: 3,
+    name: "S.G.SANTHIYA",
+    role: "staff Coordinator",
+    department: "ASSISTANT PROFESSOR(AIML)",
+    image:"/images/coordinators/staff/sandy.jpeg",
+  },
+  {
+    id: 4,
+    name: "S.ANGEL NITHYA ",
+    role: "staff Coordinator",
+    department: "ASSISTANT PROFESSOR(AIML)",
+    image:"/images/coordinators/staff/angel.jpeg",
+  },
+  {
+  id: 5,
+  name: "P.ANITHA SAHAYA MERCY",
+  role: "Staff Coordinator",
+  department: "ASSISTANT PROFESSOR(AIML)",
+  image: "/images/coordinators/staff/anitha.jpg",
+},
 ];
 
 export const technicalOverallCoordinators = [
@@ -43,7 +50,7 @@ export const technicalOverallCoordinators = [
     name: "SHERIN JESSI",
     role: "Overall Coordinator",
     department: "Final Year",
-    phone: "+91 98765 43211",
+    phone: "xxx",
     image: "/images/coordinators/overall/tech-overall-2.jpeg",
   },
 ];
@@ -62,7 +69,7 @@ export const nonTechnicalOverallCoordinators = [
     name: "SHINU ANTONY",
     role: "Overall Coordinator",
     department: "Final Year",
-    phone: "+91 98765 43213",
+    phone: "xxx",
     image: "/images/coordinators/overall/nontech-overall-2.jpeg",
   },
 ];
@@ -134,8 +141,8 @@ export const technicalEvents = [
       },
       {
         id: 3,
-        name: "ASUN RAJ",
-        image: "/images/coordinators/technical/neurocanvas/coordinator-3.jpeg",
+        name: "KISHORE",
+        image: "/images/coordinators/technical/neurocanvas/kishore.jpeg",
       },
     ],
   },
@@ -159,8 +166,8 @@ export const technicalEvents = [
       },
       {
         id: 3,
-        name: "SIVAKAMI",
-        image: "/images/coordinators/technical/logicdecode/sivakami.jpeg",
+        name: "DHARSHINI",
+        image: "/images/coordinators/technical/logicdecode/dharshini.jpeg",
       },
     ],
   },
@@ -226,14 +233,14 @@ export const nonTechnicalEvents = [
 
   {
     id: 4,
-    code: "MIND ARENA",
-    title: "Quiz",
-    icon: "quiz",
+    code: "PIXEL HUNT ",
+    title: "SnapShot",
+    icon: "snap",
     coordinators: [
       {
         id: 1,
-        name: "ANDREWS MELWINRAJ",
-        image: "/images/coordinators/nontechnical/mind-arena/andrews.jpeg",
+        name: "SHIVAKAMI",
+        image: "/images/coordinators/nontechnical/mind-arena/sivakami.jpeg",
       },
       {
         id: 2,

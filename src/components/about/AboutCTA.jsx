@@ -29,7 +29,7 @@ function AboutCTA() {
         </div>
 
         <Link
-          to="/register"
+          to="/registration"
           className="
             inline-flex
             items-center

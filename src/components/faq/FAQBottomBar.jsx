@@ -43,7 +43,7 @@ function FAQBottomBar() {
         </div>
 
         <Link
-          to="/register"
+          to="/registration"
           className="
             flex
             items-center
