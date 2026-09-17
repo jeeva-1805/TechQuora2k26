@@ -13,7 +13,7 @@ import { GOOGLE_SHEET_URL } from "../config/googleSheet";
 
 
 /* =========================================
-   CONVERT IMAGE TO BASE64
+   FILE TO BASE64
 ========================================= */
 
 const fileToBase64 = (file) => {
@@ -21,19 +21,24 @@ const fileToBase64 = (file) => {
     const reader = new FileReader();
 
     reader.onload = () => {
-      const result = reader.result;
+      try {
+        const result = reader.result;
+        const base64 = result.split(",")[1];
 
-      // Remove:
-      // data:image/png;base64,
-      const base64 = result.split(",")[1];
-
-      resolve(base64);
+        resolve(base64);
+      } catch {
+        reject(
+          new Error(
+            "Unable to convert screenshot."
+          )
+        );
+      }
     };
 
     reader.onerror = () => {
       reject(
         new Error(
-          "Unable to read payment screenshot."
+          "Unable to read screenshot."
         )
       );
     };
@@ -71,7 +76,7 @@ function Payment() {
 
 
   /* =========================================
-     GET REGISTRATION DATA
+     LOAD REGISTRATION
   ========================================= */
 
   useEffect(() => {
@@ -106,46 +111,26 @@ function Payment() {
 
 
   /* =========================================
-     CLEAN IMAGE PREVIEW
-  ========================================= */
-
-  useEffect(() => {
-    return () => {
-      if (preview) {
-        URL.revokeObjectURL(preview);
-      }
-    };
-  }, [preview]);
-
-
-  /* =========================================
-     SCREENSHOT SELECT
+     SCREENSHOT
   ========================================= */
 
   const handleScreenshot = (e) => {
     const file =
       e.target.files?.[0];
 
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
-
-    /* IMAGE CHECK */
 
     if (
       !file.type.startsWith("image/")
     ) {
       setMessage(
-        "Please upload an image file."
+        "Please upload a valid image."
       );
 
-      e.target.value = "";
       return;
     }
 
-
-    /* FILE SIZE CHECK */
 
     if (
       file.size >
@@ -155,19 +140,14 @@ function Payment() {
         "Screenshot must be below 5 MB."
       );
 
-      e.target.value = "";
       return;
     }
 
-
-    /* REMOVE OLD PREVIEW */
 
     if (preview) {
       URL.revokeObjectURL(preview);
     }
 
-
-    /* SAVE FILE */
 
     setPaymentScreenshot(file);
 
@@ -180,25 +160,17 @@ function Payment() {
 
 
   /* =========================================
-     SUBMIT ONLINE PAYMENT
+     SUBMIT PAYMENT
   ========================================= */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
 
-    /* REGISTRATION CHECK */
-
     if (!registration) {
-      setMessage(
-        "Registration information not found."
-      );
-
       return;
     }
 
-
-    /* TRANSACTION ID */
 
     if (!transactionId.trim()) {
       setMessage(
@@ -209,8 +181,6 @@ function Payment() {
     }
 
 
-    /* SCREENSHOT */
-
     if (!paymentScreenshot) {
       setMessage(
         "Please upload your payment screenshot."
@@ -220,8 +190,6 @@ function Payment() {
     }
 
 
-    /* APPS SCRIPT URL */
-
     if (
       !GOOGLE_SHEET_URL ||
       GOOGLE_SHEET_URL.includes(
@@ -229,7 +197,7 @@ function Payment() {
       )
     ) {
       setMessage(
-        "Apps Script URL is not configured."
+        "Google Apps Script URL is not configured."
       );
 
       return;
@@ -241,9 +209,7 @@ function Payment() {
       setMessage("");
 
 
-      /* =====================================
-         CONVERT SCREENSHOT TO BASE64
-      ===================================== */
+      /* CONVERT IMAGE */
 
       const screenshotBase64 =
         await fileToBase64(
@@ -251,17 +217,13 @@ function Payment() {
         );
 
 
-      /* =====================================
-         CREATE FORM DATA
-      ===================================== */
+      /* CREATE PAYLOAD */
 
       const payload =
         new URLSearchParams();
 
 
-      /* =====================================
-         REGISTRATION DETAILS
-      ===================================== */
+      /* STUDENT DETAILS */
 
       payload.append(
         "fullName",
@@ -288,6 +250,9 @@ function Payment() {
         registration.mobile || ""
       );
 
+
+      /* EVENT */
+
       payload.append(
         "category",
         registration.category || ""
@@ -303,6 +268,9 @@ function Payment() {
         registration.participationType ||
           ""
       );
+
+
+      /* TEAM MEMBERS */
 
       payload.append(
         "member1",
@@ -325,9 +293,16 @@ function Payment() {
       );
 
 
-      /* =====================================
-         PAYMENT DETAILS
-      ===================================== */
+      /* FOOD */
+
+      payload.append(
+        "foodPreference",
+        registration.foodPreference ||
+          ""
+      );
+
+
+      /* PAYMENT */
 
       payload.append(
         "paymentMethod",
@@ -345,9 +320,7 @@ function Payment() {
       );
 
 
-      /* =====================================
-         SCREENSHOT DETAILS
-      ===================================== */
+      /* PAYMENT SCREENSHOT */
 
       payload.append(
         "paymentScreenshot",
@@ -365,9 +338,7 @@ function Payment() {
       );
 
 
-      /* =====================================
-         DATE
-      ===================================== */
+      /* DATE */
 
       payload.append(
         "submittedAt",
@@ -375,9 +346,7 @@ function Payment() {
       );
 
 
-      /* =====================================
-         SEND TO GOOGLE APPS SCRIPT
-      ===================================== */
+      /* SEND */
 
       await fetch(
         GOOGLE_SHEET_URL,
@@ -396,10 +365,6 @@ function Payment() {
       );
 
 
-      /* =====================================
-         SUCCESS
-      ===================================== */
-
       sessionStorage.removeItem(
         "techquoraRegistration"
       );
@@ -408,7 +373,7 @@ function Payment() {
 
     } catch (error) {
       console.error(
-        "Online registration error:",
+        "Online Registration Error:",
         error
       );
 
@@ -423,7 +388,7 @@ function Payment() {
 
 
   /* =========================================
-     LOADING REGISTRATION
+     LOADING
   ========================================= */
 
   if (!registration) {
@@ -441,7 +406,7 @@ function Payment() {
 
 
   /* =========================================
-     SUCCESS SCREEN
+     SUCCESS
   ========================================= */
 
   if (success) {
@@ -484,7 +449,7 @@ function Payment() {
 
 
   /* =========================================
-     PAYMENT PAGE
+     PAYMENT UI
   ========================================= */
 
   return (
@@ -492,8 +457,6 @@ function Payment() {
 
       <div className="mx-auto max-w-5xl">
 
-
-        {/* BACK BUTTON */}
 
         <button
           type="button"
@@ -503,12 +466,9 @@ function Payment() {
           className="mb-6 flex items-center gap-2 text-sm text-cyan-300"
         >
           <ArrowLeft size={17} />
-
           Back to Registration
         </button>
 
-
-        {/* PAGE HEADING */}
 
         <div className="mb-8 text-center">
 
@@ -537,20 +497,17 @@ function Payment() {
         <div className="grid gap-6 lg:grid-cols-2">
 
 
-          {/* =================================
-              LEFT SIDE
-          ================================= */}
+          {/* LEFT */}
 
           <div className="space-y-6">
 
-
-            {/* REGISTRATION SUMMARY */}
 
             <section className="rounded-3xl border border-cyan-400/30 bg-[#041225] p-6">
 
               <h2 className="text-lg font-black text-cyan-300">
                 Registration Summary
               </h2>
+
 
               <div className="mt-5 space-y-3 text-sm">
 
@@ -590,8 +547,10 @@ function Payment() {
                 />
 
                 <Summary
-                  label="Payment"
-                  value="Online"
+                  label="Food Preference"
+                  value={
+                    registration.foodPreference
+                  }
                 />
 
               </div>
@@ -599,7 +558,7 @@ function Payment() {
             </section>
 
 
-            {/* PAYMENT DETAILS */}
+            {/* QR */}
 
             <section className="rounded-3xl border border-fuchsia-400/30 bg-[#041225] p-6">
 
@@ -650,9 +609,7 @@ function Payment() {
           </div>
 
 
-          {/* =================================
-              RIGHT SIDE
-          ================================= */}
+          {/* RIGHT */}
 
           <form
             onSubmit={handleSubmit}
@@ -663,6 +620,7 @@ function Payment() {
               Payment Confirmation
             </h2>
 
+
             <p className="mt-2 text-xs leading-5 text-slate-400">
               After completing the payment,
               enter your transaction ID and
@@ -670,7 +628,7 @@ function Payment() {
             </p>
 
 
-            {/* TRANSACTION ID */}
+            {/* TRANSACTION */}
 
             <div className="mt-6">
 
@@ -684,6 +642,7 @@ function Payment() {
 
               </label>
 
+
               <input
                 type="text"
                 value={transactionId}
@@ -693,7 +652,7 @@ function Payment() {
                   )
                 }
                 placeholder="Enter UPI / Transaction ID"
-                className="w-full rounded-xl border border-cyan-400/40 bg-[#06172c] px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-fuchsia-400"
+                className="w-full rounded-xl border border-cyan-400/40 bg-[#06172c] px-4 py-3 text-sm outline-none placeholder:text-slate-500 focus:border-fuchsia-400"
               />
 
             </div>
@@ -726,9 +685,9 @@ function Payment() {
                 </span>
 
                 <span className="mt-2 text-[10px] text-slate-400">
-                  JPG, PNG or WEBP • Maximum
-                  5 MB
+                  JPG, PNG or WEBP • Maximum 5 MB
                 </span>
+
 
                 <input
                   type="file"
@@ -744,7 +703,7 @@ function Payment() {
             </div>
 
 
-            {/* IMAGE PREVIEW */}
+            {/* PREVIEW */}
 
             {preview && (
               <div className="mt-5">
@@ -763,7 +722,7 @@ function Payment() {
             )}
 
 
-            {/* ERROR MESSAGE */}
+            {/* MESSAGE */}
 
             {message && (
               <div className="mt-5 rounded-xl border border-fuchsia-400/30 bg-fuchsia-400/5 p-3 text-center text-xs text-fuchsia-200">
@@ -820,10 +779,6 @@ function Payment() {
   );
 }
 
-
-/* =========================================
-   SUMMARY COMPONENT
-========================================= */
 
 function Summary({
   label,

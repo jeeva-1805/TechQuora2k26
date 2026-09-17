@@ -36,6 +36,7 @@ const initialForm = {
   member2: "",
   member3: "",
   member4: "",
+  foodPreference: "",
   paymentMethod: "Online",
 };
 
@@ -107,7 +108,8 @@ function RegistrationForm() {
       !formData.year ||
       !formData.department ||
       !formData.mobile.trim() ||
-      !formData.event
+      !formData.event ||
+      !formData.foodPreference
     ) {
       setMessage("Please fill all required fields.");
       return false;
@@ -486,6 +488,51 @@ function RegistrationForm() {
 
           </div>
         )}
+        {/* Food Preference */}
+<div>
+  <Label
+    text="Food Preference"
+    required
+  />
+
+  <div className="grid grid-cols-2 gap-3">
+
+    <ChoiceButton
+      active={
+        formData.foodPreference === "Veg"
+      }
+      onClick={() => {
+        setFormData((prev) => ({
+          ...prev,
+          foodPreference: "Veg",
+        }));
+
+        setMessage("");
+      }}
+      icon="🥗"
+      title="Veg"
+      subtitle="Vegetarian Food"
+    />
+
+    <ChoiceButton
+      active={
+        formData.foodPreference === "Non-Veg"
+      }
+      onClick={() => {
+        setFormData((prev) => ({
+          ...prev,
+          foodPreference: "Non-Veg",
+        }));
+
+        setMessage("");
+      }}
+      icon="🍗"
+      title="Non-Veg"
+      subtitle="Non-Vegetarian Food"
+    />
+
+  </div>
+</div>
 
         {/* Payment Method */}
         <div>
