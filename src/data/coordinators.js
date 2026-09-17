@@ -248,7 +248,7 @@ export const nonTechnicalEvents = [
   {
     id: 4,
     code: "PIXEL HUNT ",
-    title: "SnapShot",
+    title: "PHOTO FRENZY",
     icon: "snap",
     coordinators: [
       {

@@ -88,9 +88,9 @@ export const nonTechnicalEvents = [
   {
     id: "N-01",
     slug: "Pixel-Hunt",
-    title: "SnapShot",
+    title: "Snap Frenzy",
     description: "Think fast. Answer faster.",
-    tags: ["Knowledge", "Speed", "Fun"],
+    tags: ["Capture", "Speed", "Fun"],
     image: "/images/events/snapshot.png",
     accent: "cyan",
 
@@ -109,7 +109,7 @@ export const nonTechnicalEvents = [
   {
     id: "N-02",
     slug: "on-the-spot-debate",
-    title: "On the Spot Debate",
+    title: "Instant Verdict",
     description: "Speak. Argue. Impress.",
     tags: ["Speak", "Think", "Persuade"],
     image: "/images/events/debate.png",
@@ -130,7 +130,7 @@ export const nonTechnicalEvents = [
   {
     id: "N-03",
     slug: "guess-the-lyrics",
-    title: "Guess the Lyrics",
+    title: "Cinetunes",
     description: "Feel the beat. Guess the line.",
     tags: ["Music", "Listen", "Guess"],
     image: "/images/events/lyrics.png",
@@ -151,8 +151,8 @@ export const nonTechnicalEvents = [
   {
     id: "N-04",
     slug: "mystery-box",
-    title: "Mystery Box",
-    description: "Unbox the unexpected.",
+    title: "Brain Arena",
+    description: "find the clues.",
     tags: ["Explore", "Think", "Surprise"],
     image: "/images/events/mystery.png",
     accent: "orange",
