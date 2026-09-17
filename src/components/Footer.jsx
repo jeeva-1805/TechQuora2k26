@@ -57,7 +57,7 @@ function Footer() {
 
               <Creator
                 image="/images/footer/creator-2.jpeg"
-                name="ANDREWS MELWINRAJ"
+                name="ANDREWS"
                 role="Backend Developer"
                 pink={true}
               />
@@ -107,7 +107,7 @@ function Footer() {
             <span className="text-lg text-fuchsia-400">
               
             </span>{" "}
-            by Jeeva & Andrews Melwinraj
+            by Jeeva & Andrews
           </p>
 
         </div>
