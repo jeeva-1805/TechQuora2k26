@@ -10,6 +10,7 @@ import Coordinator from "./pages/Coordinator";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import EventDetails from "./pages/EventDetails";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/events/:eventId" element={<EventDetails />}/>
           <Route path="/registration" element={<Register />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/coordinator" element={<Coordinator />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />

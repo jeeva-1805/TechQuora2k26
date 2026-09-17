@@ -91,7 +91,7 @@ export const nonTechnicalEvents = [
     title: "SnapShot",
     description: "Think fast. Answer faster.",
     tags: ["Knowledge", "Speed", "Fun"],
-    image: "/images/events/quiz.png",
+    image: "/images/events/snapshot.png",
     accent: "cyan",
 
     duration: "30 Minutes",

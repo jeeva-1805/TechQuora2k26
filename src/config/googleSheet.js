@@ -1,2 +1,2 @@
 export const GOOGLE_SHEET_URL =
-  "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+  "https://script.google.com/macros/s/AKfycbyawHuCs2zLn4x8aP6z0AitpfxmF-Eniqq587ZHe0SJ9Vlw0Zfd-Li31OQW96fA3VNBSQ/exec";

@@ -32,7 +32,21 @@ export const staffCoordinators = [
   name: "P.ANITHA SAHAYA MERCY",
   role: "Staff Coordinator",
   department: "ASSISTANT PROFESSOR(AIML)",
-  image: "/images/coordinators/staff/anitha.jpg",
+  image: "/images/coordinators/staff/anithamam.jpeg",
+},
+{
+  id: 5,
+  name: "ELANGO",
+  role: "Student Coordinator",
+  department: "(AIML)",
+  image: "/images/coordinators/staff/elango.jpeg",
+},
+{
+  id: 5,
+  name: "DHARSHINI",
+  role: "Student Coordinator",
+  department: "(AIML)",
+  image: "/images/coordinators/staff/dharshini.jpeg",
 },
 ];
 

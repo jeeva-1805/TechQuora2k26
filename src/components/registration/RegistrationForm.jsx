@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Building2,
@@ -17,8 +18,6 @@ import {
   years,
 } from "../../data/registrationData";
 
-import { GOOGLE_SHEET_URL } from "../../config/googleSheet";
-
 const initialForm = {
   fullName: "",
   collegeName: "",
@@ -35,8 +34,9 @@ const initialForm = {
 };
 
 function RegistrationForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(initialForm);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const events =
@@ -59,6 +59,8 @@ function RegistrationForm() {
       category,
       event: "",
     }));
+
+    setMessage("");
   };
 
   const changeParticipation = (type) => {
@@ -70,72 +72,48 @@ function RegistrationForm() {
       member3: "",
       member4: "",
     }));
+
+    setMessage("");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setMessage("");
 
     if (
-      !formData.fullName ||
-      !formData.collegeName ||
+      !formData.fullName.trim() ||
+      !formData.collegeName.trim() ||
       !formData.year ||
       !formData.department ||
-      !formData.mobile ||
+      !formData.mobile.trim() ||
       !formData.event
     ) {
       setMessage("Please fill all required fields.");
       return;
     }
 
-    if (
-      GOOGLE_SHEET_URL.includes(
-        "PASTE_YOUR_GOOGLE"
-      )
-    ) {
-      setMessage(
-        "Google Sheet URL has not been added yet."
-      );
+    const mobilePattern = /^[0-9]{10}$/;
+
+    if (!mobilePattern.test(formData.mobile.trim())) {
+      setMessage("Please enter a valid 10-digit mobile number.");
       return;
     }
 
-    try {
-      setLoading(true);
-
-      const payload = new URLSearchParams();
-
-      Object.entries(formData).forEach(
-        ([key, value]) => {
-          payload.append(key, value);
-        }
-      );
-
-      payload.append(
-        "submittedAt",
-        new Date().toLocaleString()
-      );
-
-      await fetch(GOOGLE_SHEET_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: payload,
-      });
-
-      setMessage(
-        "Registration submitted successfully!"
-      );
-
-      setFormData(initialForm);
-    } catch (error) {
-      console.error(error);
-
-      setMessage(
-        "Something went wrong. Please try again."
-      );
-    } finally {
-      setLoading(false);
+    if (
+      formData.participationType === "Team" &&
+      !formData.member1.trim()
+    ) {
+      setMessage("Please enter at least one team member.");
+      return;
     }
+
+    sessionStorage.setItem(
+      "techquoraRegistration",
+      JSON.stringify(formData)
+    );
+
+    navigate("/payment");
   };
 
   return (
@@ -159,7 +137,7 @@ function RegistrationForm() {
         onSubmit={handleSubmit}
         className="mt-5 space-y-3"
       >
-        {/* Name + College */}
+        {/* Full Name + College */}
         <div className="grid gap-3 sm:grid-cols-2">
           <InputField
             label="Full Name"
@@ -207,39 +185,34 @@ function RegistrationForm() {
           />
         </div>
 
-        {/* Mobile */}
+        {/* Mobile Number */}
         <InputField
           label="Mobile Number"
           name="mobile"
           value={formData.mobile}
           onChange={handleChange}
-          placeholder="Enter your mobile number"
+          placeholder="Enter your 10-digit mobile number"
           icon={Phone}
           type="tel"
+          inputMode="numeric"
+          maxLength={10}
           required
         />
 
-        {/* Category */}
+        {/* Event Category */}
         <div>
           <Label text="Event Category" />
 
           <div className="grid grid-cols-2 gap-3">
             <ChoiceButton
-              active={
-                formData.category === "Technical"
-              }
-              onClick={() =>
-                changeCategory("Technical")
-              }
+              active={formData.category === "Technical"}
+              onClick={() => changeCategory("Technical")}
               icon="</>"
               title="Technical Events"
             />
 
             <ChoiceButton
-              active={
-                formData.category ===
-                "Non-Technical"
-              }
+              active={formData.category === "Non-Technical"}
               onClick={() =>
                 changeCategory("Non-Technical")
               }
@@ -249,15 +222,14 @@ function RegistrationForm() {
           </div>
         </div>
 
-        {/* Individual / Team */}
+        {/* Participation Type */}
         <div>
           <Label text="Team / Individual" />
 
           <div className="grid grid-cols-2 gap-3">
             <ChoiceButton
               active={
-                formData.participationType ===
-                "Individual"
+                formData.participationType === "Individual"
               }
               onClick={() =>
                 changeParticipation("Individual")
@@ -268,13 +240,8 @@ function RegistrationForm() {
             />
 
             <ChoiceButton
-              active={
-                formData.participationType ===
-                "Team"
-              }
-              onClick={() =>
-                changeParticipation("Team")
-              }
+              active={formData.participationType === "Team"}
+              onClick={() => changeParticipation("Team")}
               icon={<UsersRound size={20} />}
               title="Team"
               subtitle="Max 4 Members"
@@ -282,7 +249,7 @@ function RegistrationForm() {
           </div>
         </div>
 
-        {/* Event */}
+        {/* Event Selection */}
         <SelectField
           label="Select Your Event"
           name="event"
@@ -294,8 +261,7 @@ function RegistrationForm() {
         />
 
         {/* Team Members */}
-        {formData.participationType ===
-          "Team" && (
+        {formData.participationType === "Team" && (
           <div>
             <Label text="Team Members (Max 4)" />
 
@@ -305,9 +271,7 @@ function RegistrationForm() {
                   key={number}
                   label={`${number}. Member Name`}
                   name={`member${number}`}
-                  value={
-                    formData[`member${number}`]
-                  }
+                  value={formData[`member${number}`]}
                   onChange={handleChange}
                   placeholder={`Enter member ${number} name`}
                   icon={UserRound}
@@ -318,16 +282,16 @@ function RegistrationForm() {
           </div>
         )}
 
-        {/* Message */}
+        {/* Error Message */}
         {message && (
-          <div className="rounded-lg border border-cyan-400/30 bg-cyan-400/5 p-3 text-center text-xs text-cyan-200">
+          <div className="rounded-lg border border-fuchsia-400/30 bg-fuchsia-400/5 p-3 text-center text-xs text-fuchsia-200">
             {message}
           </div>
         )}
 
+        {/* Proceed to Payment */}
         <button
           type="submit"
-          disabled={loading}
           className="
             flex w-full items-center justify-center gap-3
             rounded-xl
@@ -340,17 +304,13 @@ function RegistrationForm() {
             shadow-[0_0_25px_rgba(34,211,238,0.15)]
             transition
             hover:scale-[1.01]
-            disabled:cursor-not-allowed
-            disabled:opacity-60
           "
         >
           <Send size={18} />
 
-          {loading
-            ? "Submitting..."
-            : "Proceed to Payment"}
+          Proceed to Payment
 
-          {!loading && <span>→</span>}
+          <span>→</span>
         </button>
 
         <p className="text-center text-[10px] text-cyan-300/70">
@@ -361,15 +321,20 @@ function RegistrationForm() {
   );
 }
 
-/* ---------- Reusable UI ---------- */
+/* =========================
+   Reusable Components
+========================= */
 
-function Label({ text }) {
+function Label({ text, required = true }) {
   return (
     <label className="mb-1 block text-xs font-medium text-white">
       {text}
-      <span className="ml-1 text-fuchsia-400">
-        *
-      </span>
+
+      {required && (
+        <span className="ml-1 text-fuchsia-400">
+          *
+        </span>
+      )}
     </label>
   );
 }
@@ -382,7 +347,10 @@ function InputField({
 }) {
   return (
     <div>
-      <Label text={label} />
+      <Label
+        text={label}
+        required={required}
+      />
 
       <div className="flex items-center rounded-lg border border-cyan-400/50 bg-[#06172c] transition focus-within:border-fuchsia-400">
         {Icon && (
@@ -412,9 +380,12 @@ function SelectField({
 }) {
   return (
     <div>
-      <Label text={label} />
+      <Label
+        text={label}
+        required={required}
+      />
 
-      <div className="relative flex items-center rounded-lg border border-cyan-400/50 bg-[#06172c]">
+      <div className="relative flex items-center rounded-lg border border-cyan-400/50 bg-[#06172c] transition focus-within:border-fuchsia-400">
         {Icon && (
           <Icon
             size={17}
