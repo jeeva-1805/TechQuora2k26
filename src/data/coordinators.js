@@ -163,7 +163,7 @@ export const technicalEvents = [
 
   {
     id: 4,
-    code: "LOGICDECODE",
+    code: "BYTE BATTLE",
     title: "quiz",
     icon: "code",
     coordinators: [
