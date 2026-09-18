@@ -27,13 +27,13 @@ function ContactBottomBar() {
       >
         <Info
           icon={CalendarDays}
-          value="1 October 2026"
+          value="Sep 30 2026"
           label="Event Date"
         />
 
         <Info
           icon={Clock3}
-          value="9:00 AM - 5:00 PM"
+          value="9:00 AM - 4:00 PM"
           label="Event Time"
         />
 

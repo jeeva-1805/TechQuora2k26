@@ -126,7 +126,7 @@ export const technicalEvents = [
       },
       {
         id: 2,
-        name:"NIRANJANA ",
+        name:"NIRANJANA",
         image: "/images/coordinators/technical/bugslayer/niranjana.png",
       },
       {
@@ -150,7 +150,7 @@ export const technicalEvents = [
       },
       {
         id: 2,
-        name: "PATTAMMAL",
+        name:"PATTAMMAL",
         image: "/images/coordinators/technical/neurocanvas/pattammal.jpeg",
       },
       {
@@ -174,7 +174,7 @@ export const technicalEvents = [
       },
       {
         id: 2,
-        name: "PREETHI",
+        name: "ANGELIN PREETHI",
 
         image: "/images/coordinators/technical/logicdecode/preethi.jpeg",
       },
@@ -209,8 +209,8 @@ export const nonTechnicalEvents = [
 
   {
     id: 2,
-    code: "LOGO DESIGN",
-    title: "Creative Mark",
+    code: "Find the Clues",
+    title: "MIND ARENA",
     icon: "brush",
     coordinators: [
       {
@@ -248,7 +248,7 @@ export const nonTechnicalEvents = [
   {
     id: 4,
     code: "PIXEL HUNT ",
-    title: "PHOTO FRENZY",
+    title: "CREATIVE MARK",
     icon: "snap",
     coordinators: [
       {

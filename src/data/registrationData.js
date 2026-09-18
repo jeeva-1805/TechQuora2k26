@@ -2,14 +2,14 @@ export const technicalEvents = [
   "NEUROVERSE - Paper Presentation",
   "BUGSLAYER - Debugging",
   "NEUROCANVAS - Poster Making",
-  "LOGICDECODE - Output to Code",
+  "BYTEBATTLE - Output to Code",
 ];
 
 export const nonTechnicalEvents = [
   "DEBATE - Instant Verdict",
-  "LOGO DESIGN - Creative Mark",
+  "CREATIVE MARK - pixel hunt",
   "CINETUNES - Guess the Lyrics and Movies",
-  "MIND ARENA - Quiz",
+  "MIND ARENA - find the clue",
 ];
 
 export const departments = [

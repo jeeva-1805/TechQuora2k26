@@ -8,14 +8,14 @@ export const technicalEvents = [
     image: "/images/events/paper.png",
     accent: "cyan",
 
-    duration: "10 Minutes",
-    team: "1 - 2 Members",
+    duration: "5 Minutes",
+    team: "2 - 3 Members",
     venue: "Loyola Auditorium",
 
     rules: [
-      "Maximum 2 participants per team.",
-      "Presentation duration is 10 minutes.",
-      "Participants must bring their presentation file.",
+      "Maximum slide limit of 8.",
+      "Presentation duration is 5 minutes.",
+      "Send your presentations on neuroverse.aiml@gmail.com",
       "Judges decision will be final.",
     ],
   },
@@ -35,8 +35,8 @@ export const technicalEvents = [
 
     rules: [
       "This is an individual event.",
-      "Participants will be given buggy code.",
-      "Fix maximum errors within the given time.",
+      "Find The error in the code.",
+      "phones are not allowed.",
       "Judges decision will be final.",
     ],
   },
@@ -55,10 +55,10 @@ export const technicalEvents = [
     venue: "Loyola Auditorium",
 
     rules: [
-      "Poster must be created within the given time.",
+      "Participants must bring their own laptop.",
       "Topic will be announced on the spot.",
-      "Originality and creativity will be evaluated.",
-      "Judges decision will be final.",
+      "Tools: Canva,Picsart,Photoshop.",
+      "No AI allowed.",
     ],
   },
 
@@ -71,15 +71,15 @@ export const technicalEvents = [
     image: "/images/events/codex.png",
     accent: "blue",
 
-    duration: "45 Minutes",
+    duration: "30 Minutes",
     team: "Individual",
     venue: "Computer Lab",
 
     rules: [
-      "This is an individual coding event.",
+      "Question based on AIML.",
       "Participants must solve the given problems.",
       "Internet usage is not allowed.",
-      "Fastest correct submissions will score higher.",
+      "Participants should follow the rules.",
     ],
   },
 ];
@@ -88,7 +88,7 @@ export const nonTechnicalEvents = [
   {
     id: "N-01",
     slug: "Pixel-Hunt",
-    title: "Snap Frenzy",
+    title: "Creative Mark",
     description: "Think fast. Answer faster.",
     tags: ["Capture", "Speed", "Fun"],
     image: "/images/events/snapshot.png",
@@ -99,10 +99,10 @@ export const nonTechnicalEvents = [
     venue: "Loyola Auditorium",
 
     rules: [
-      "Maximum 2 members per team.",
-      "Multiple rounds may be conducted.",
-      "No mobile phones are allowed.",
-      "Quiz master's decision will be final.",
+      "no repated image",
+      "no images download from any site, only capture the raw image .",
+      "color theme will be provide in on the spot.",
+      "within 15minutes give the result, time extension got rejected.",
     ],
   },
 
@@ -115,14 +115,14 @@ export const nonTechnicalEvents = [
     image: "/images/events/debate.png",
     accent: "pink",
 
-    duration: "5 Minutes",
-    team: "Individual",
+    duration: "1 hour",
+    team: "2 Members",
     venue: "Loyola Auditorium",
 
     rules: [
       "Topic will be given on the spot.",
-      "Preparation time will be limited.",
-      "Participants must stay within the time limit.",
+      "Participation must speak only in english.",
+      "Preparation time 1 minute.",
       "Judges decision will be final.",
     ],
   },
@@ -137,21 +137,21 @@ export const nonTechnicalEvents = [
     accent: "purple",
 
     duration: "30 Minutes",
-    team: "2 Members",
+    team: "3 - 4 Members",
     venue: "Loyola Auditorium",
 
     rules: [
-      "Participants must identify songs or lyrics.",
+      "One should rise hands in each team.",
       "No mobile phones are allowed.",
-      "Points depend on correct answers.",
+      "Wrong answer will reduce in 1 mark.",
       "Coordinator decision will be final.",
     ],
   },
 
   {
     id: "N-04",
-    slug: "mystery-box",
-    title: "Brain Arena",
+    slug: "puzzle difference",
+    title: "Mind Arena",
     description: "find the clues.",
     tags: ["Explore", "Think", "Surprise"],
     image: "/images/events/mystery.png",
@@ -162,10 +162,10 @@ export const nonTechnicalEvents = [
     venue: "Loyola Auditorium",
 
     rules: [
-      "Instructions will be revealed during the event.",
-      "Participants must complete the given challenge.",
-      "Teamwork and creativity will be evaluated.",
-      "Coordinator decision will be final.",
+      "no photos should take while projecting the image .",
+      "One should rise hands in each team.",
+      "no argument , answer need to say within time,",
+      "image display in screen for 45 second and relable question ask.",
     ],
   },
 ];
