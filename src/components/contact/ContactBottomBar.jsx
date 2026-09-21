@@ -1,9 +1,4 @@
-import {
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  MapPin,
-} from "lucide-react";
+import {ArrowRight,CalendarDays,Clock3,MapPin,} from "lucide-react";
 
 import { Link } from "react-router-dom";
 

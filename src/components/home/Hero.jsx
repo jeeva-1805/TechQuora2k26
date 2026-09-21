@@ -7,7 +7,7 @@ function Hero() {
     <section
       className="relative min-h-[88vh] w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/images/header.jpeg')",
+        backgroundImage: "url('/images/header.png')",
       }}
     >
       <div className="absolute left-[5%] top-10 h-72 w-72 rounded-full bg-blue-600/20 blur-[120px]" />
@@ -31,7 +31,7 @@ function Hero() {
           <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Think.
 
-            <span className="block bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-fuchsia-400 via-purple-800 to-cyan-400 bg-clip-text text-transparent">
               Create.
             </span>
 

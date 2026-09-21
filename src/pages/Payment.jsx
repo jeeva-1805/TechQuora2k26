@@ -51,8 +51,23 @@ const fileToBase64 = (file) => {
 function Payment() {
   const navigate = useNavigate();
 
-  const [registration, setRegistration] =
-    useState(null);
+  const [registration, setRegistration] = useState(() => {
+    try {
+      const savedData = sessionStorage.getItem(
+        "techquoraRegistration"
+      );
+
+      if (!savedData) return null;
+
+      return JSON.parse(savedData);
+    } catch (error) {
+      console.error("Registration data error:", error);
+
+      sessionStorage.removeItem("techquoraRegistration");
+
+      return null;
+    }
+  });
 
   const [transactionId, setTransactionId] =
     useState("");
@@ -80,34 +95,10 @@ function Payment() {
   ========================================= */
 
   useEffect(() => {
-    const savedData =
-      sessionStorage.getItem(
-        "techquoraRegistration"
-      );
-
-    if (!savedData) {
-      navigate("/registration");
-      return;
-    }
-
-    try {
-      const parsedData =
-        JSON.parse(savedData);
-
-      setRegistration(parsedData);
-    } catch (error) {
-      console.error(
-        "Registration data error:",
-        error
-      );
-
-      sessionStorage.removeItem(
-        "techquoraRegistration"
-      );
-
+    if (!registration) {
       navigate("/registration");
     }
-  }, [navigate]);
+  }, [navigate, registration]);
 
 
   /* =========================================
