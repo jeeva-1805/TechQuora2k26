@@ -35,8 +35,8 @@ export const technicalEvents = [
 
     rules: [
       "This is an individual event.",
-      "Find The error in the code.",
-      "phones are not allowed.",
+      "Find The error in the code and select correct choices.",
+      "phone is compulsory.",
       "Judges decision will be final.",
     ],
   },
