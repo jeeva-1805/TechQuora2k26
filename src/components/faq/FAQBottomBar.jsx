@@ -13,7 +13,7 @@ function FAQBottomBar() {
       <div className="grid gap-4 lg:grid-cols-[1fr_1fr_1fr_1.1fr_auto] lg:items-center">
         <Info
           icon={CalendarDays}
-          value="1 October 2026"
+          value="30 Sep 2026"
           label="Event Date"
         />
 
