@@ -19,7 +19,7 @@ function FAQBottomBar() {
 
         <Info
           icon={Clock3}
-          value="9:00 AM - 5:00 PM"
+          value="9:00 AM - 4:00 PM"
           label="Event Time"
         />
 
