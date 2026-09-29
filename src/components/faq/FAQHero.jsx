@@ -46,7 +46,7 @@ function FAQHero() {
           <Info
             icon={CalendarDays}
             title="Event Date"
-            value="Oct 1, 2026"
+            value="Sep 30, 2026"
           />
 
           <Info
